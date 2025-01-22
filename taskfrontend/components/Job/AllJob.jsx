@@ -8,6 +8,7 @@ import { FaSearch } from "react-icons/fa";
 
 export default function AllJob() {
     const nameDescriptionRef = useRef(null);
+    const [selectedName, setSelectedName] = useState("");
     const [selectedCity, setSelectedCity] = useState("");
     const [fromHour, setFromHour] = useState("");
     const [toHour, setToHour] = useState("");
@@ -28,6 +29,7 @@ export default function AllJob() {
             fromHour: params.get("fromHour") || "",
             toHour: params.get("toHour") || "",
         });
+        setSelectedName(params.get('nameDescription')||'')
         setSelectedCity(params.get("city") || "");
         setFromHour(params.get("fromHour") || "");
         setToHour(params.get("toHour") || "");
@@ -59,6 +61,8 @@ export default function AllJob() {
                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-second" />
                         <input
                             ref={nameDescriptionRef}
+                            value={selectedName}
+                            onChange={(e) => setSelectedCity(e.target.value)}
                             id="nameDescription"
                             type="text"
                             placeholder="Enter name or description..."

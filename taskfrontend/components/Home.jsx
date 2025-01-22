@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <div className='centerFrom'>
+    <div className='flex items-center justify-center container mx-auto'>
 
     <div className="bg-bgColor text-textColor ">
       <main className="container mt-8 space-y-12">
