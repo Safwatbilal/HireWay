@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Modal from './ModuleJob';
 import { user, company } from '@/util/auth';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const JobItem = ({ jobTitle, jobDescription, city, workHours, applyLink, jobId }) => {
     const [modalOpen, setModalOpen] = useState(false);
@@ -30,22 +31,53 @@ const JobItem = ({ jobTitle, jobDescription, city, workHours, applyLink, jobId }
     return (
         <>
             <Modal open={modalOpen} close={() => setModalOpen(false)} id={selectedJobId} />
-            <div className="bg-bgSecond p-8  w-full border-b-2">
-                <h2 className="textForm">{jobTitle}</h2>
-                <p className="text-white mb-4 overflow-y-auto h-32 scrollbar-thin scrollbar-thumb-second scrollbar-track-bgSecond">
+            <motion.div 
+                className="bg-bgSecond p-8 w-full border-b-2" 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                transition={{ duration: 0.5 }}
+            >
+                <motion.h2 
+                    className="textForm" 
+                    initial={{ y: -20, opacity: 0 }} 
+                    animate={{ y: 0, opacity: 1 }} 
+                    transition={{ duration: 0.5 }}
+                >
+                    {jobTitle}
+                </motion.h2>
+                <motion.p 
+                    className="text-white mb-4 overflow-y-auto h-32 scrollbar-thin scrollbar-thumb-second scrollbar-track-bgSecond" 
+                    initial={{ opacity: 0 }} 
+                    animate={{ opacity: 1 }} 
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
                     {jobDescription.split('\n').map((line, index) => (
                         <span key={index}>
                             {line}
                             <br />
-                    </span>
+                        </span>
                     ))}
-                </p>
+                </motion.p>
                 <div className="flex flex-col gap-3 text-sm text-textColor md:flex-row justify-between">
-                    <p className="font-semibold "><span className="mr-2 text-second">City:</span>{city}</p>
-                    <p className="font-semibold "><span className="mr-2 text-second">Hours:</span>{workHours}</p>
+                    <motion.p 
+                        className="font-semibold" 
+                        initial={{ x: -20, opacity: 0 }} 
+                        animate={{ x: 0, opacity: 1 }} 
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                    >
+                        <span className="mr-2 text-second">City:</span>{city}
+                    </motion.p>
+                    <motion.p 
+                        className="font-semibold" 
+                        initial={{ x: 20, opacity: 0 }} 
+                        animate={{ x: 0, opacity: 1 }} 
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                    >
+                        <span className="mr-2 text-second">Hours:</span>{workHours}
+                    </motion.p>
                 </div>
                 {actionButton && <div className="flex justify-center items-center mt-4">{actionButton}</div>}
-            </div>
+            </motion.div>
         </>
     );
 };
