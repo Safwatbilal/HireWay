@@ -62,7 +62,7 @@ export default function AllJob() {
                         <input
                             ref={nameDescriptionRef}
                             value={selectedName}
-                            onChange={(e) => setSelectedCity(e.target.value)}
+                            onChange={(e) => setSelectedName(e.target.value)}
                             id="nameDescription"
                             type="text"
                             placeholder="Enter name or description..."
