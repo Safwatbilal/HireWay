@@ -1,37 +1,37 @@
 'use client';
 
 import { useRef, useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import JobList from "./Job";
 import CityDropdown from "../CityDropdown";
 import { FaSearch } from "react-icons/fa";
 
 export default function AllJob() {
     const nameDescriptionRef = useRef(null);
-    const [selectedCity, setSelectedCity] = useState(""); 
-    const [fromHour, setFromHour] = useState(""); 
-    const [toHour, setToHour] = useState(""); 
+    const [selectedCity, setSelectedCity] = useState("");
+    const [fromHour, setFromHour] = useState("");
+    const [toHour, setToHour] = useState("");
     const [filterValues, setFilterValues] = useState({
         nameDescription: "",
         city: "",
         fromHour: "",
-        toHour: ""
+        toHour: "",
     });
 
-    const searchParams = useSearchParams();
     const router = useRouter();
+
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         setFilterValues({
-            nameDescription: params.get('nameDescription') || "",
-            city: params.get('city') || "",
-            fromHour: params.get('fromHour') || "",
-            toHour: params.get('toHour') || ""
+            nameDescription: params.get("nameDescription") || "",
+            city: params.get("city") || "",
+            fromHour: params.get("fromHour") || "",
+            toHour: params.get("toHour") || "",
         });
-        setSelectedCity(params.get('city') || "");
-        setFromHour(params.get('fromHour') || "");
-        setToHour(params.get('toHour') || "");
-    }, [searchParams]);
+        setSelectedCity(params.get("city") || "");
+        setFromHour(params.get("fromHour") || "");
+        setToHour(params.get("toHour") || "");
+    }, [window.location.search]);
 
     const handleLogInputs = () => {
         const nameDescription = nameDescriptionRef.current.value;
@@ -39,14 +39,14 @@ export default function AllJob() {
             nameDescription,
             city: selectedCity,
             fromHour,
-            toHour
+            toHour,
         };
         setFilterValues(newFilterValues);
         const params = new URLSearchParams();
-        if (newFilterValues.nameDescription) params.set('nameDescription', newFilterValues.nameDescription);
-        if (newFilterValues.city) params.set('city', newFilterValues.city);
-        if (newFilterValues.fromHour) params.set('fromHour', newFilterValues.fromHour);
-        if (newFilterValues.toHour) params.set('toHour', newFilterValues.toHour);
+        if (newFilterValues.nameDescription) params.set("nameDescription", newFilterValues.nameDescription);
+        if (newFilterValues.city) params.set("city", newFilterValues.city);
+        if (newFilterValues.fromHour) params.set("fromHour", newFilterValues.fromHour);
+        if (newFilterValues.toHour) params.set("toHour", newFilterValues.toHour);
 
         router.push(`?${params.toString()}`);
     };
@@ -61,8 +61,6 @@ export default function AllJob() {
                             ref={nameDescriptionRef}
                             id="nameDescription"
                             type="text"
-                            value={filterValues.nameDescription}
-                            onChange={(e) => setFilterValues({...filterValues, nameDescription: e.target.value})} // Added onChange handler
                             placeholder="Enter name or description..."
                             className="w-full pl-10 pr-4 py-2 bg-bgSecond text-white rounded-md focus:outline-none focus:ring-2 focus:ring-second"
                         />
@@ -82,7 +80,7 @@ export default function AllJob() {
                         min="0"
                         max="12"
                         value={fromHour}
-                        onChange={(e) => setFromHour(e.target.value)} 
+                        onChange={(e) => setFromHour(e.target.value)}
                         placeholder="From hour"
                         className="w-full pl-2 pr-4 py-2 bg-bgSecond text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#F39C12]"
                     />
@@ -94,7 +92,7 @@ export default function AllJob() {
                         min="0"
                         max="12"
                         value={toHour}
-                        onChange={(e) => setToHour(e.target.value)} 
+                        onChange={(e) => setToHour(e.target.value)}
                         placeholder="To hour"
                         className="w-full pl-2 pr-4 py-2 bg-bgSecond text-white rounded-md focus:outline-none focus:ring-2 focus:ring-[#F39C12]"
                     />
@@ -109,7 +107,7 @@ export default function AllJob() {
 
             <div className="lg:w-3/4 bg-bgSecond">
                 <JobList
-                    type={'allJob'}
+                    type="allJob"
                     nameDescription={filterValues.nameDescription}
                     city={filterValues.city}
                     fromHour={filterValues.fromHour}
