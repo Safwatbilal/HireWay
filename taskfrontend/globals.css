@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+    .center {
+        @apply flex justify-center items-center;
+    }
+    .link{
+        @apply text-second hover:underline;
+    }
+    .error{
+        @apply text-red-500 text-center font-bold
+    }
+    .input {
+        @apply w-full px-4 py-2 bg-bgColor text-white rounded focus:outline-none focus:ring-2 focus:ring-second
+    }
+    .buttonForm{
+        @apply w-full bg-second text-white py-2 rounded hover:bg-yellow-500 transition duration-300
+    }
+    .textForm{
+        @apply text-2xl font-bold text-second mb-6 text-center
+    }
+    .form{
+        @apply bg-bgSecond p-8 rounded-lg shadow-lg w-full max-w-md 
+    }
+    .centerFrom{
+        @apply h-[calc(100vh-124px)]  flex items-center justify-center container mx-auto
+    }
+    .textArea{
+        @apply  mb-4 overflow-y-auto h-32 scrollbar-thin scrollbar-thumb-second scrollbar-track-bgSecond
+    }
+    .buttonBox{
+        @apply bg-bgColor text-white font-semibold py-2 px-4 rounded-lg hover:bg-second transition-all shadow-md
+    }
+    .logout{
+        @apply px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600
+    }
+    .buttonHeader{
+        @apply px-4 py-2 rounded-lg text-sm md:text-base shadow-md hover:bg-second
+    }
+    .applyBox{
+        @apply flex items-center gap-4
+    }
+    .applyText{
+        @apply text-lg text-yellow-400
+    }
+}
